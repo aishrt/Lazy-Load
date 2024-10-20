@@ -1,0 +1,25 @@
+import { Suspense } from 'react';
+import AdminLoading from './AdminLoading';
+
+const Loadable = (Component) => {
+  const LoadableComponent = (props) => {
+    return (
+      <Suspense fallback={<AdminLoading />}>
+        <Component {...props} />
+      </Suspense>
+    );
+  };
+
+  LoadableComponent.displayName = `Loadable(${Component.displayName || Component.name || 'Component'})`;
+
+  return LoadableComponent;
+};
+
+export default Loadable;
+
+
+// const Dashboard = Loadable(lazy(() => import("@/pages/dashboard")));
+
+
+
+///This can be used for lazy loading
